@@ -96,7 +96,7 @@ def logout():
     error = None
     user_id = str(session.get('user_id'))
     user = db.execute(
-        'SELECT * FROM guard WHERE username = ?', (user_id)
+        'SELECT * FROM guard WHERE id = ?', (user_id)
     ).fetchone()
 
     if user is None:
@@ -114,8 +114,7 @@ def logout():
 def status():
     db = get_db()
     error = None
-    _status = db.execute("SELECT * FROM guard")
-    db.commit()
+    _status = db.execute("SELECT * FROM guard").fetchall()
 
-    return render_template('auth/status.html')
+    return render_template('auth/status.html', status=_status)
 
