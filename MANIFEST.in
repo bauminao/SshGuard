@@ -1,0 +1,4 @@
+include SshGuard/schema.sql
+graft SshGuard/static
+graft SshGuard/templates
+global-exclude *.pyc
